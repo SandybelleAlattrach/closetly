@@ -1,0 +1,14 @@
+
+.select-input {
+  font-size: 16px;
+}
+
+.suggestion-box {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,121 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Lobster&display=swap');
+
+:root{
+  --baby-pink: #ffe6f5;
+  --cute-pink: #ff8ec7;
+  --accent: #ff67a8;
+  --card-shadow: rgba(255,120,160,0.22);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: rgb(206, 115, 153);
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+
+@keyframes logoBounce {
+  0% { transform: translateY(0) scale(1); opacity: 0.95; }
+  40% { transform: translateY(-6px) scale(1.03); opacity: 1; }
+  80% { transform: translateY(0) scale(1); opacity: 0.98; }
+  100% { transform: translateY(0) scale(1); opacity: 0.95; }
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--baby-pink);
+  font-weight: 500;
+  transition: color .2s, transform .15s;
+}
+
+.nav-links a:hover {
+  color: pink;
+  transform: translateY(-3px);
+}
+
+.page-container {
+  padding-top: 110px; 
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cta-btn {
+  margin-top: 18px;
+  background: linear-gradient(90deg,var(--cute-pink),var(--accent));
+  color: black;
+  font-size: 18px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255,100,150,0.22);
+  transition: transform .18s, box-shadow .18s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255,100,150,0.28);
+}
+
+.card {
+  background: black;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 20px var(--card-shadow);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,12,20,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 720px;
+  width: 92%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.28);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.heart-btn {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px;
+  transition: transform .12s;
+}
+.heart-btn:hover { transform: scale(1.08); }
+
+.center { text-align: center; }
+.pink-text { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .modal-content { flex-direction: column; align-items: center; }
+  .logo-img { height: 48px; }
+  .nav-links { gap: 14px; }
+}
