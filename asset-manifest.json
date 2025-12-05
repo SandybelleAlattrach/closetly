@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/closetly/static/css/main.62893b1d.css",
+    "main.js": "/closetly/static/js/main.28c05d05.js",
+    "static/media/out2.png": "/closetly/static/media/out2.fb1343236da8d6b57043.png",
+    "static/media/out1.png": "/closetly/static/media/out1.a8338712a00e5de362ab.png",
+    "static/media/out3.png": "/closetly/static/media/out3.f3bb66f5790738bfa810.png",
+    "index.html": "/closetly/index.html",
+    "main.62893b1d.css.map": "/closetly/static/css/main.62893b1d.css.map",
+    "main.28c05d05.js.map": "/closetly/static/js/main.28c05d05.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.62893b1d.css",
+    "static/js/main.28c05d05.js"
+  ]
+}
