@@ -1,0 +1,48 @@
+.card {
+  max-width: 360px;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  transition: 0.3s;
+}
+
+.card.dark {
+  background: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.card img {
+  margin-top: 15px;
+  width: 130px;
+}
+
+.toggle {
+  float: right;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.weather-icon {
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+.outfit {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.loading {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}

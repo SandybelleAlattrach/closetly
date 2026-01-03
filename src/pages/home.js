@@ -1,27 +1,34 @@
+
 import React from "react";
 import out1 from "../assets/out1.png";
 import out2 from "../assets/out2.png";
 import out3 from "../assets/out3.png";
 import "./home.css"; 
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-  return (
-    <main className="home">
+  const navigate = useNavigate();
 
-      
+  const goToWardrobe = () => {
+    navigate("/wardrobe");   };
+
+  return (
+    <main className="home-page">
       <section className="hero">
         <h1>Your Stylish Digital Wardrobe</h1>
         <p>Plan outfits, organize clothes, and shine every day with AI.</p>
-        <button className="hero-btn">Start Organizing</button>
+        <button className="hero-btn" onClick={goToWardrobe}>
+          Start Organizing
+        </button>
       </section>
 
-      
       <section className="gallery-section">
         <div className="outfit-preview">
           <img src={out1} alt="Outfit 1" className="outfit-img" />
           <img src={out2} alt="Outfit 2" className="outfit-img" />
           <img src={out3} alt="Outfit 3" className="outfit-img" />
-        </div></section>
+        </div>
+      </section>
 
       <section className="features-section">
         <div className="feature-row">
@@ -40,8 +47,7 @@ function Home() {
             <p>Everything looks clean, soft, and feminine.</p>
           </div>
         </div>
-  </section>  
-
+      </section>
     </main>
   );
 }

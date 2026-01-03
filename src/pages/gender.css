@@ -1,0 +1,41 @@
+/* Default Female Theme */
+.auth-container.female-theme {
+  background: linear-gradient(to bottom, #FFC0CB, #FF69B4);
+  color: white;
+}
+
+.auth-container.female-theme .option-card {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.auth-container.female-theme .option-card.active {
+  border-color: #FF1493;
+  background: rgba(255,255,255,0.4);
+}
+
+.auth-container.female-theme .next-btn {
+  background-color: #FF1493;
+  color: white;
+}
+
+/* Male Theme */
+.auth-container.male-theme {
+  background: linear-gradient(to bottom, #87CEFA, #000080);
+  color: white;
+}
+
+.auth-container.male-theme .option-card {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.auth-container.male-theme .option-card.active {
+  border-color: #87CEFA;
+  background: rgba(255,255,255,0.3);
+}
+
+.auth-container.male-theme .next-btn {
+  background-color: #001f4d;
+  color: #87CEFA;
+}

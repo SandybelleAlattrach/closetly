@@ -1,0 +1,47 @@
+/* Grid حقيقي مش لزق */
+.colors-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;            /* ← المسافة الصح */
+  margin-bottom: 25px;
+}
+
+/* زر اللون */
+.color-btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: #eee;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+/* لما ينختار */
+.color-btn.selected {
+  background: #ffb6c1;
+  border-color: #ff69b4;
+  color: #000;
+}
+
+/* ===== Male Theme ===== */
+.male-theme {
+  background: linear-gradient(180deg, #0a1a2f, #000);
+  color: #fff;
+}
+
+.male-theme .color-btn {
+  background: #1e293b;
+  color: #fff;
+}
+
+.male-theme .color-btn.selected {
+  background: #38bdf8;
+  color: #000;
+}
+
+/* ===== Female Theme ===== */
+.female-theme {
+  background: linear-gradient(180deg, #ffc0cb, #ff69b4);
+  color: #fff;
+}

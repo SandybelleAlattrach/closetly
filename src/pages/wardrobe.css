@@ -1,62 +1,218 @@
+/* =========================
+   PAGE LAYOUT
+========================= */
 
-.wardrobe-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 18px;
-}
-
-.wardrobe-card {
-  width: 180px;
-  border-radius: 14px;
-  overflow: hidden;
-  padding: 8px;
+.wardrobe-page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  transition: transform .2s, box-shadow .2s;
+  gap: 18px;
+  padding-top: 80px;
+  transition: all 0.5s ease;
 }
 
-.card-image-wrap {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
+/* =========================
+   CARD
+========================= */
+
+.wardrobe-card {
+  background: rgba(255,255,255,0.15);
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-.card-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .35s;
-  display: block;
-}
+/* =========================
+   GRID (WARDROBE PAGE)
+========================= */
 
-.card-image-wrap:hover img {
-  transform: scale(1.06);
-}
-
-.card-actions {
-  width: 100%;
+.wardrobe-grid {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.small-remove {
-  background: transparent;
-  border: 1px solid #f3d6e6;
-  color: #c65a86;
-  padding: 6px 8px;
+.wardrobe-item img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 10px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.wardrobe-btn,
+.add-btn,
+.next-btn,
+.skip-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
+  transition: all 0.3s ease;
 }
 
-.small-remove:hover {
-  background: #fff0f8;
+.wardrobe-btn:hover,
+.add-btn:hover,
+.next-btn:hover,
+.skip-btn:hover {
+  transform: scale(1.05);
 }
 
+/* =========================
+   PREVIEW IMAGES
+========================= */
+
+.outfits-preview {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.outfit-img {
+  width: 100px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: white;
+  width: 300px;
+  padding: 25px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  color: #333;
+}
+
+.modal-box h3 {
+  margin-bottom: 15px;
+  color: #ff4fa3;
+}
+
+/* buttons inside modal */
+
+.modal-box .add-btn {
+  background-color: #ff69b4;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.modal-box .skip-btn {
+  background: transparent;
+  color: #888;
+  border: 1px solid #ddd;
+}
+
+/* =========================
+   FEMALE THEME
+========================= */
+
+.wardrobe-page.female {
+  background: linear-gradient(to bottom, #ffc0cb, #ff69b4);
+  color: white;
+}
+
+.wardrobe-page.female .wardrobe-card {
+  background: rgba(255,105,180,0.25);
+}
+
+.wardrobe-page.female .wardrobe-btn,
+.wardrobe-page.female .add-btn,
+.wardrobe-page.female .next-btn {
+  background-color: #ff1493;
+  color: white;
+}
+
+/* =========================
+   MALE THEME
+========================= */
+
+.wardrobe-page.male {
+  background: linear-gradient(to bottom, #87cefa, #000080);
+  color: white;
+}
+
+.wardrobe-page.male .wardrobe-card {
+  background: rgba(0,0,80,0.35);
+}
+
+.wardrobe-page.male .wardrobe-btn,
+.wardrobe-page.male .add-btn,
+.wardrobe-page.male .next-btn {
+  background-color: #001f4d;
+  color: #87cefa;
+}
+/* =========================
+   OUTFIT CARD
+========================= */
+
+.outfit-card {
+  position: relative;
+  width: 110px;
+}
+
+.outfit-card img {
+  width: 110px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.outfit-actions {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  gap: 6px;
+}
+
+.fav-btn,
+.delete-btn {
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  background: rgba(255,255,255,0.85);
+  transition: transform 0.2s ease;
+}
+
+.fav-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.fav-btn.active {
+  background: #ff69b4;
+}

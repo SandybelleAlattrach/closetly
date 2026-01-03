@@ -13,6 +13,8 @@ function Header() {
         <Link to="/features">Features</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/wardrobe">Wardrobe</Link>
+        <Link to="/login" className="login-btn">Login</Link>
+        <Link to="/signup" className="signup-btn">Sign Up</Link>
       </nav>
     </header>
   );

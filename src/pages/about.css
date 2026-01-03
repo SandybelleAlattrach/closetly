@@ -1,0 +1,48 @@
+
+.about-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e08bb3; /* background pinkish */
+  padding: 20px;
+}
+
+.white-card {
+  background-color: rgb(243, 229, 237);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  padding: 40px;
+  width: 350px;
+  text-align: center;
+}
+
+.card-title {
+  color: #ec4899; /* pink */
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #4b5563; /* gray text */
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  transition: all 0.7s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.card-subtitle {
+  color: #f472b6; /* lighter pink */
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
