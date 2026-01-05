@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/closetly/static/css/main.1c74db19.css",
-    "main.js": "/closetly/static/js/main.df9d2a2b.js",
+    "main.js": "/closetly/static/js/main.b02ae1a1.js",
     "static/media/out2.png": "/closetly/static/media/out2.fb1343236da8d6b57043.png",
     "static/media/out1.png": "/closetly/static/media/out1.a8338712a00e5de362ab.png",
     "static/media/out3.png": "/closetly/static/media/out3.f3bb66f5790738bfa810.png",
     "index.html": "/closetly/index.html",
     "main.1c74db19.css.map": "/closetly/static/css/main.1c74db19.css.map",
-    "main.df9d2a2b.js.map": "/closetly/static/js/main.df9d2a2b.js.map"
+    "main.b02ae1a1.js.map": "/closetly/static/js/main.b02ae1a1.js.map"
   },
   "entrypoints": [
     "static/css/main.1c74db19.css",
-    "static/js/main.df9d2a2b.js"
+    "static/js/main.b02ae1a1.js"
   ]
 }
