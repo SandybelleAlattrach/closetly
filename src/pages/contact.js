@@ -20,7 +20,7 @@ function Contact() {
 
     try {
       const res = await fetch(
-  "https://closetly-production-83da.up.railway.app/api/contact",
+  "closetly-production-c30c.up.railway.app",
   {
     method: "POST",
     headers: {
