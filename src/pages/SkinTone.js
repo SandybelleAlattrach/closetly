@@ -37,7 +37,7 @@ function SkinTone() {
             return;
           }
           console.log("Selected Skin Tone:", selectedSkin);
-          nav("/next-step"); // Replace with your next page route
+          nav("/next-step"); 
         }}
         style={{
           padding: "10px 20px",

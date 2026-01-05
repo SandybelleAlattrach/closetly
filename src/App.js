@@ -25,6 +25,7 @@ import SkinTone from "./pages/SkinTone";
 import SavedOutfits from "./pages/SavedOutfits";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Logout from "./pages/Logout";
 function App() {
   return (
     <>
@@ -54,6 +55,7 @@ function App() {
         <Route path="/saved-outfits" element={<SavedOutfits />} />
         <Route path="/Forgot-Password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+         <Route path="/logout" element={<Logout />} />
       </Routes>
 
       <Footer />

@@ -8,19 +8,47 @@ function Contact() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Message sent 💖");
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+  "https://closetly-production-83da.up.railway.app/api/contact",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  }
+);
+
+ 
+
+      if (res.ok) {
+        alert("Message sent 💖");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        alert("Failed to send message 😢");
+      }
+    } catch (err) {
+      alert("Server error ❌");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="contact-page">
       <div className="contact-card">
-        <h2> 💌 Contact</h2>
+        <h2>💌 Contact</h2>
 
         <form onSubmit={handleSubmit}>
           <input
@@ -49,7 +77,9 @@ function Contact() {
             required
           />
 
-          <button type="submit">Send 💖</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Sending..." : "Send 💖"}
+          </button>
         </form>
       </div>
     </div>

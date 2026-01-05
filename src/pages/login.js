@@ -8,6 +8,7 @@ function Login() {
   // State للأيميل والباسورد
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+localStorage.setItem("user", "true");
 
   const handleLogin = async () => {
     try {
@@ -56,6 +57,7 @@ function Login() {
           value={loginPassword}             // صار مطابق للـ state
           onChange={(e) => setLoginPassword(e.target.value)}
         />
+        
 
         <button className="next-btn" onClick={handleLogin}>
           Login →

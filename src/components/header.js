@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./header.css";
 
 function Header() {
+  const isLoggedIn = localStorage.getItem("user");
+
   return (
     <header className="navbar">
       <h2 className="logo">Closetly</h2>
@@ -13,8 +15,15 @@ function Header() {
         <Link to="/features">Features</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/wardrobe">Wardrobe</Link>
-        <Link to="/login" className="login-btn">Login</Link>
-        <Link to="/signup" className="signup-btn">Sign Up</Link>
+
+        {!isLoggedIn ? (
+          <>
+            <Link to="/login" className="login-btn">Login</Link>
+            <Link to="/signup" className="signup-btn">Sign Up</Link>
+          </>
+        ) : (
+          <Link to="/logout" className="logout-btn">Logout</Link>
+        )}
       </nav>
     </header>
   );
