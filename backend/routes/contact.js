@@ -1,4 +1,3 @@
-// backend/routes/contact.js
 import express from "express";
 import db from "../config/db.js";
 
@@ -16,7 +15,7 @@ router.post("/", async (req, res) => {
       "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
     await db.execute(sql, [name, email, message]);
 
-    res.json({ message: "Message sent!" });
+    res.status(200).json({ message: "Message sent!" });
   } catch (err) {
     console.error("DB ERROR:", err);
     res.status(500).json({ message: "DB error" });
