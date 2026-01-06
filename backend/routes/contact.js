@@ -3,7 +3,6 @@ import { pool } from "../config/db.js";
 
 const router = express.Router();
 
-/* POST /api/contact */
 router.post("/", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -12,13 +11,14 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const sql =
-      "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
-    await pool.query(sql, [name, email, message]);
+    await pool.query(
+      "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)",
+      [name, email, message]
+    );
 
-    res.json({ message: "Message sent!" });
-  } catch (err) {
-    console.error(err);
+    res.status(200).json({ message: "Message sent" });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "DB error" });
   }
 });
