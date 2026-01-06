@@ -1,5 +1,5 @@
 import express from "express";
-import { pool } from "../config/db.js";
+import db from "../config/db.js";
 
 const router = express.Router();
 
@@ -11,12 +11,12 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    await pool.query(
-      "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)",
-      [name, email, message]
-    );
+    const sql =
+      "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
 
-    res.status(200).json({ message: "Message sent" });
+    await db.execute(sql, [name, email, message]);
+
+    res.json({ message: "Message sent!" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "DB error" });
