@@ -1,9 +1,6 @@
 import mysql from "mysql2/promise";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const db = mysql.createPool({
+export const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -13,4 +10,13 @@ const db = mysql.createPool({
   connectionLimit: 10,
 });
 
-export default db;
+export const testDB = async () => {
+  try {
+    const connection = await db.getConnection();
+    console.log("✅ MySQL connected");
+    connection.release();
+  } catch (err) {
+    console.error("❌ MySQL connection error:", err);
+    process.exit(1);
+  }
+};
