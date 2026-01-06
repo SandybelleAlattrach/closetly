@@ -1,5 +1,4 @@
 import express from "express";
-
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -10,12 +9,10 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing fields" });
     }
 
-    console.log("📩 Contact message:", { name, email, message });
+    console.log("📩 New contact message:");
+    console.log({ name, email, message });
 
-    res.status(200).json({
-      success: true,
-      message: "Message received successfully",
-    });
+    res.status(200).json({ success: true, message: "Message received" });
   } catch (error) {
     console.error("❌ Contact error:", error);
     res.status(500).json({ error: "Failed to send message" });
