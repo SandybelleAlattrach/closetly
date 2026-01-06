@@ -5,7 +5,7 @@ function Logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
 
-    // إعادة تحميل الموقع (هي اللي بتحل كل شي)
+    
     window.location.href = "/login";
   }, []);
 

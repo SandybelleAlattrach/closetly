@@ -50,7 +50,7 @@ function MakeupType() {
             return;
           }
           console.log("Selected Makeup:", selectedMakeup);
-          nav("/skin-tone"); // Navigate to SkinTone page
+          nav("/skin-tone");
         }}
         style={{
           padding: "10px 20px",

@@ -1,4 +1,4 @@
-/* Contact Page Background */
+
 .contact-page {
   min-height: 100vh;
   background: linear-gradient(to bottom, #ffe6f0, #f7c1d9);
@@ -7,7 +7,6 @@
   align-items: center;
 }
 
-/* White Box */
 .contact-card {
   background: white;
   width: 380px;
@@ -17,12 +16,10 @@
   text-align: center;
 }
 
-/* Title */
 .contact-card h2 {
   margin-bottom: 20px;
 }
 
-/* Inputs */
 .contact-card input,
 .contact-card textarea {
   width: 100%;
@@ -34,12 +31,10 @@
   resize: none;
 }
 
-/* Message box height */
 .contact-card textarea {
   min-height: 100px;
 }
 
-/* Button */
 .contact-card button {
   width: 100%;
   padding: 12px;

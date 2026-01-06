@@ -12,9 +12,9 @@ function GenderSelection() {
   ];
 
   const handleNext = () => {
-    if (!selected) return; // يمنع الانتقال إذا ما في اختيار
+    if (!selected) return; 
     localStorage.setItem("gender", selected);
-    navigate("/wardrobe"); // يروح للصفحة التالية
+    navigate("/wardrobe");
   };
 
   return (

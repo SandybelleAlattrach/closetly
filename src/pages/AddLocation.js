@@ -11,8 +11,6 @@ function AddLocation() {
       alert("Please enter your city 🌍");
       return;
     }
-
-    // Navigate to color preference after entering city
     navigate("/color-preference");
   };
 

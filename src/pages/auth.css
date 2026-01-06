@@ -1,6 +1,4 @@
-/* =======================
-   AUTH PAGE BASE
-======================= */
+
 
 .auth-page {
   min-height: 100vh;
@@ -23,9 +21,6 @@
   margin-bottom: 20px;
 }
 
-/* =======================
-   INPUTS
-======================= */
 
 .auth-card input,
 .auth-input {
@@ -38,9 +33,6 @@
   outline: none;
 }
 
-/* =======================
-   BUTTONS
-======================= */
 
 .auth-card button,
 .next-btn {
@@ -76,9 +68,6 @@
   margin-top: 10px;
 }
 
-/* =======================
-   OPTIONS GRID
-======================= */
 
 .options-grid {
   display: grid;
@@ -90,7 +79,7 @@
 
 .option-card {
   padding: 12px;
-  background: #fff;              /* أبيض دائمًا */
+  background: #fff;      
   border-radius: 12px;
   text-align: center;
   cursor: pointer;

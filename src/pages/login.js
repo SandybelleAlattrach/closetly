@@ -5,7 +5,6 @@ import "./auth.css";
 function Login() {
   const navigate = useNavigate();
 
-  // State للأيميل والباسورد
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 localStorage.setItem("user", "true");
@@ -46,7 +45,7 @@ localStorage.setItem("user", "true");
           className="auth-input"
           type="email"
           placeholder="Email"
-          value={loginEmail}                // صار مطابق للـ state
+          value={loginEmail}            
           onChange={(e) => setLoginEmail(e.target.value)}
         />
 
@@ -54,7 +53,7 @@ localStorage.setItem("user", "true");
           className="auth-input"
           type="password"
           placeholder="Password"
-          value={loginPassword}             // صار مطابق للـ state
+          value={loginPassword}         
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         

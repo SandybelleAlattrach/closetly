@@ -13,7 +13,7 @@ router.post("/generate", async (req, res) => {
     const imageUrl = mockImages[randomIndex];
 
     setTimeout(() => {
-      res.json({ outfitImage: imageUrl }); // ✅ نفس الاسم يلي الـ frontend عم يتوقعه
+      res.json({ outfitImage: imageUrl }); 
     }, 1000);
   } catch (err) {
     console.error(err);

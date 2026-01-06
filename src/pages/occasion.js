@@ -23,10 +23,10 @@ function Occasion() {
       return;
     }
 
-    // save occasion
+ 
     localStorage.setItem("occasion", selected);
 
-    // next page
+    
     navigate("/ai-decision");
   };
 

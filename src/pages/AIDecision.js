@@ -12,7 +12,7 @@ function AIDecision() {
 
   const handleSkip = () => {
     localStorage.setItem("AI", "skipped");
-    navigate("/gender"); // ✅ يروح على صفحة gender
+    navigate("/gender");
   };
 
   return (

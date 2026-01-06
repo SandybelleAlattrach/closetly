@@ -1,4 +1,4 @@
-// backend/controllers/aicontroller.js
+
 import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -15,7 +15,6 @@ export const generateOutfit = async (req, res) => {
 
     const imageUrl = response.data[0].url;
 
-    // هنا نرجع الـ URL تحت اسم outfitImage
     res.json({ outfitImage: imageUrl });
   } catch (err) {
     console.error(err);

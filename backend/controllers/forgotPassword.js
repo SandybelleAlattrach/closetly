@@ -9,8 +9,7 @@ export const forgotPassword = async (req, res) => {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   user.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-  user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 دقائق
-
+  user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; 
   await user.save();
 
   const resetURL = `http://localhost:3000/reset/${resetToken}`;

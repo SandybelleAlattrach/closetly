@@ -1,16 +1,16 @@
 import "./auth.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import WardrobeAdd from "./WardrobeAdd"; // تأكد من المسار الصحيح
+import WardrobeAdd from "./WardrobeAdd";
 
 function PagesSignUp() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [userWardrobe, setUserWardrobe] = useState([]);
 
-const handleAddWardrobe = (newOutfit) => {
-  setUserWardrobe([...userWardrobe, newOutfit]);
-};
+  const handleAddWardrobe = (newOutfit) => {
+    setUserWardrobe([...userWardrobe, newOutfit]);
+  };
 
   const [userInfo, setUserInfo] = useState({
     firstName: "",
@@ -21,7 +21,7 @@ const handleAddWardrobe = (newOutfit) => {
     occasion: "",
     AI: "",
     gender: "",
-    wardrobe: "",
+    wardrobe: [],
     colors: [],
     mood: "",
     hairColor: "",
@@ -33,17 +33,17 @@ const handleAddWardrobe = (newOutfit) => {
   });
 
   const handleNext = () => {
+    
     if (userInfo.gender === "male" && step === 7) {
-      setStep(13); // male skips steps
+      setStep(13);
       return;
     }
     setStep(step + 1);
   };
 
   const handleSave = async () => {
-    console.log("HANDLE SAVE CLICKED ✅");
-  console.log("USER INFO:", userInfo);
   try {
+    console.log("Sending userInfo:", userInfo);
     const res = await fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,20 +60,18 @@ const handleAddWardrobe = (newOutfit) => {
     localStorage.setItem("user", JSON.stringify(data.user));
     alert("Signup successful ✅");
     navigate("/login");
-
   } catch (err) {
     console.error(err);
     alert("Server error ❌");
   }
 };
 
-
   return (
     <div className="auth-page">
       <div className={`auth-card ${userInfo.gender === "male" ? "male-theme" : "female-theme"}`}>
         <h2>✨ Sign Up</h2>
 
-        {/* STEP 1: Basic Info */}
+     
         {step === 1 && (
           <>
             <input
@@ -111,7 +109,7 @@ const handleAddWardrobe = (newOutfit) => {
           </>
         )}
 
-        {/* STEP 2: Age */}
+    
         {step === 2 && (
           <>
             <h2>🎂 Select Your Age</h2>
@@ -136,7 +134,7 @@ const handleAddWardrobe = (newOutfit) => {
           </>
         )}
 
-        {/* STEP 3: Occasion */}
+     
         {step === 3 && (
           <>
             <h2>Occasion</h2>
@@ -168,7 +166,6 @@ const handleAddWardrobe = (newOutfit) => {
           </>
         )}
 
-        {/* STEP 4: AI */}
         {step === 4 && (
           <>
             <h2>AI Decision?</h2>
@@ -193,7 +190,7 @@ const handleAddWardrobe = (newOutfit) => {
           </>
         )}
 
-        {/* STEP 5: Gender */}
+     
         {step === 5 && (
           <>
             <h2>Gender</h2>
@@ -221,7 +218,7 @@ const handleAddWardrobe = (newOutfit) => {
           </>
         )}
 
-        {/* STEP 6: Wardrobe */}
+     
 {step === 6 && (
   <>
     <h2>Wardrobe</h2>
@@ -258,8 +255,6 @@ const handleAddWardrobe = (newOutfit) => {
   </>
 )}
 
-
-        {/* STEP 7: Color Preference */}
         {step === 7 && (
           <>
             <h2>🎨 Colors You Prefer</h2>
@@ -565,26 +560,19 @@ const handleAddWardrobe = (newOutfit) => {
 
 {step === 14 && (
   <div>
-    <h2>✅ Finish Signup</h2>
-
-    <input
-      className="auth-input"
-      type="text"
-      placeholder="Rating"
-      value={userInfo.rating}
-      onChange={(e) =>
-        setUserInfo({ ...userInfo, rating: e.target.value })
-      }
-    />
-
-    <button
-      className="next-btn"
-      onClick={handleSave}
-    >
-      Save & Finish Signup
-    </button>
-  </div>
-)}
+  <h2>✅ Finish Signup</h2>
+            <input
+              className="auth-input"
+              type="text"
+              placeholder="Rating (optional)"
+              value={userInfo.rating}
+              onChange={(e) => setUserInfo({ ...userInfo, rating: e.target.value })}
+            />
+            <button className="next-btn" onClick={handleSave}>
+              Save & Finish Signup
+            </button>
+          </div>
+        )}
 
 </div>
 </div>

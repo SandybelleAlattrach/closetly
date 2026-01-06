@@ -14,9 +14,8 @@ function AIPreview() {
         });
         const data = await res.json();
 
-        // بعد 3 ثواني بيظهر الصورة
         setTimeout(() => {
-          setOutfitImage(data.outfitImage); // ✅ نفس الاسم يلي backend عم يرجعه
+          setOutfitImage(data.outfitImage); 
           setLoading(false);
         }, 3000);
       } catch (err) {
