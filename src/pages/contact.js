@@ -8,7 +8,7 @@ function Contact() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,32 +16,30 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus("Sending...");
 
     try {
       const res = await fetch(
-  "closetly-production-c30c.up.railway.app",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  }
-);
+        "https://closetly-nstg.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
- 
+      const data = await res.json();
 
       if (res.ok) {
-        alert("Message sent 💖");
+        setStatus("Message sent 💖");
         setForm({ name: "", email: "", message: "" });
       } else {
-        alert("Failed to send message 😢");
+        setStatus(data.message || "Error");
       }
-    } catch (err) {
-      alert("Server error ❌");
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      setStatus("Server error");
     }
   };
 
@@ -77,10 +75,10 @@ function Contact() {
             required
           />
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send 💖"}
-          </button>
+          <button type="submit">Send 💖</button>
         </form>
+
+        {status && <p className="status">{status}</p>}
       </div>
     </div>
   );
