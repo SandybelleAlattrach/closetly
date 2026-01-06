@@ -5,13 +5,14 @@ function AIDecision() {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    localStorage.setItem("AI", "yes");
-    navigate("/gender");
-  };
+  console.log("Navigating to AI Preview...");
+  localStorage.setItem("AI", "yes");
+  navigate("/ai-preview");
+};
 
   const handleSkip = () => {
     localStorage.setItem("AI", "skipped");
-    navigate("/gender");
+    navigate("/gender"); // ✅ يروح على صفحة gender
   };
 
   return (

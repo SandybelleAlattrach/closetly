@@ -12,7 +12,6 @@ import Login from "./pages/login";
 import Signup from "./pages/Signup";
 import AgeSelection from "./pages/AgeSelection";
 import Occasion from "./pages/occasion";
-import AISuggestion from "./pages/AISuggestion";
 import AIOutfitGenerator from "./pages/AIOutfitGenerator";
 import GenderSelection from "./pages/GenderSelection";
 import AddLocation from "./pages/AddLocation";
@@ -26,6 +25,8 @@ import SavedOutfits from "./pages/SavedOutfits";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Logout from "./pages/Logout";
+import AIPreview from "./pages/AIPreview";
+import AIDecision from "./pages/AIDecision.js";
 function App() {
   return (
     <>
@@ -40,7 +41,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/age" element={<AgeSelection />} />
         <Route path="/occasion" element={<Occasion />} />
-        <Route path="/ai-suggestion" element={<AISuggestion />} />
+        <Route path="/ai-suggestion" element={<AIDecision />} />
         <Route path="/ai-generator" element={<AIOutfitGenerator />} />
         <Route path="/gender" element={<GenderSelection />} />
         <Route path="/location" element={<AddLocation />} />
@@ -56,6 +57,7 @@ function App() {
         <Route path="/Forgot-Password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
          <Route path="/logout" element={<Logout />} />
+          <Route path="/ai-preview" element={<AIPreview />} />
       </Routes>
 
       <Footer />
