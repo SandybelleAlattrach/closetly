@@ -2,15 +2,18 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import contactRoutes from "./routes/contact.js";
+import db from "./config/db.js"; // triggers connection test/logging
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+  })
+);
 
 app.use(express.json());
 
