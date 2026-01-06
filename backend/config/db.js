@@ -1,20 +1,19 @@
 import mysql from "mysql2/promise";
 
-export const db = mysql.createPool({
+export const pool = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT,
+  waitForConnections: true,
+  connectionLimit: 10,
 });
 
-export const testDB = async () => {
-  try {
-    const conn = await db.getConnection();
-    console.log("✅ MySQL Connected");
-    conn.release();
-  } catch (err) {
-    console.error("❌ DB Error:", err.message);
-    process.exit(1);
-  }
-};
+/* just to test connection */
+export async function testDB() {
+  const conn = await pool.getConnection();
+  console.log("✅ MySQL connected");
+  conn.release();
+}
+
