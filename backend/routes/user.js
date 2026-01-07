@@ -5,13 +5,30 @@ const router = express.Router();
 
 /**
  * GET /api/users/:id
- * Returns basic user profile (excludes password)
+ * Return user profile (excludes password)
  */
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const [rows] = await db.execute(
-      `SELECT id, first_name AS firstName, last_name AS lastName, email, city, occasion, ai, gender, wardrobe, colors, mood, hair_color AS hairColor, hair_type AS hairType, makeup, skin, rating, age, created_at AS createdAt
+      `SELECT id,
+              first_name AS firstName,
+              last_name AS lastName,
+              email,
+              city,
+              occasion,
+              ai,
+              gender,
+              wardrobe,
+              colors,
+              mood,
+              hair_color AS hairColor,
+              hair_type AS hairType,
+              makeup,
+              skin,
+              rating,
+              age,
+              created_at AS createdAt
        FROM users WHERE id = ?`,
       [id]
     );
@@ -25,8 +42,8 @@ router.get("/:id", async (req, res) => {
 
 /**
  * PUT /api/users/:id
- * Update user profile (partial). Accepts fields like firstName, lastName, city, etc.
- * For wardrobe/colors send arrays; they will be stored as JSON.
+ * Partial update of profile fields. Accepts JSON body with allowed fields.
+ * wardrobe/colors should be arrays (will be stored as JSON).
  */
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
@@ -55,7 +72,6 @@ router.put("/:id", async (req, res) => {
     if (Object.prototype.hasOwnProperty.call(req.body, key)) {
       let col = key;
       let val = req.body[key];
-      // map camelCase to DB column names where necessary
       if (key === "firstName") col = "first_name";
       if (key === "lastName") col = "last_name";
       if (key === "hairColor") col = "hair_color";

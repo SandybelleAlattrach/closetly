@@ -2,9 +2,9 @@ import db from "../config/db.js";
 import bcrypt from "bcryptjs";
 
 /**
- * Signup - creates a new user
- * Expects JSON body with at least { email, password }.
- * Optional profile fields accepted as well.
+ * Signup - create a new user
+ * Expects at least: { email, password }
+ * Returns created user (without password)
  */
 export const signup = async (req, res) => {
   try {
@@ -32,7 +32,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Check if email already exists
+    // Check duplicate email
     const [existing] = await db.execute("SELECT id FROM users WHERE email = ?", [email]);
     if (existing.length > 0) {
       return res.status(409).json({ message: "Email already registered" });
@@ -73,7 +73,24 @@ export const signup = async (req, res) => {
     const insertedId = result.insertId;
 
     const [rows] = await db.execute(
-      `SELECT id, first_name AS firstName, last_name AS lastName, email, city, occasion, ai, gender, wardrobe, colors, mood, hair_color AS hairColor, hair_type AS hairType, makeup, skin, rating, age, created_at AS createdAt
+      `SELECT id,
+              first_name AS firstName,
+              last_name AS lastName,
+              email,
+              city,
+              occasion,
+              ai,
+              gender,
+              wardrobe,
+              colors,
+              mood,
+              hair_color AS hairColor,
+              hair_type AS hairType,
+              makeup,
+              skin,
+              rating,
+              age,
+              created_at AS createdAt
        FROM users WHERE id = ?`,
       [insertedId]
     );
@@ -87,7 +104,8 @@ export const signup = async (req, res) => {
 
 /**
  * Login - authenticate user
- * Expects { email, password } in body
+ * Expects: { email, password }
+ * Returns user (without password) on success
  */
 export const login = async (req, res) => {
   try {
@@ -111,7 +129,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Remove sensitive info before returning
+    // remove sensitive data
     delete user.password_hash;
 
     return res.json({ user });
