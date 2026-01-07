@@ -1,18 +1,85 @@
 import express from "express";
-import User from "../models/User.js";
+import db from "../config/db.js";
 
 const router = express.Router();
 
-router.post("/age", async (req, res) => {
-  const { userId, age } = req.body;
-  await User.findByIdAndUpdate(userId, { age });
-  res.json({ success: true });
+/**
+ * GET /api/users/:id
+ * Returns basic user profile (excludes password)
+ */
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [rows] = await db.execute(
+      `SELECT id, first_name AS firstName, last_name AS lastName, email, city, occasion, ai, gender, wardrobe, colors, mood, hair_color AS hairColor, hair_type AS hairType, makeup, skin, rating, age, created_at AS createdAt
+       FROM users WHERE id = ?`,
+      [id]
+    );
+    if (rows.length === 0) return res.status(404).json({ message: "User not found" });
+    return res.json({ user: rows[0] });
+  } catch (err) {
+    console.error("USER GET ERR:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
 });
 
-router.post("/occasion", async (req, res) => {
-  const { userId, occasion } = req.body;
-  await User.findByIdAndUpdate(userId, { occasion });
-  res.json({ success: true });
+/**
+ * PUT /api/users/:id
+ * Update user profile (partial). Accepts fields like firstName, lastName, city, etc.
+ * For wardrobe/colors send arrays; they will be stored as JSON.
+ */
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const allowed = [
+    "firstName",
+    "lastName",
+    "city",
+    "occasion",
+    "AI",
+    "gender",
+    "wardrobe",
+    "colors",
+    "mood",
+    "hairColor",
+    "hairType",
+    "makeup",
+    "skin",
+    "rating",
+    "age",
+  ];
+
+  const updates = [];
+  const values = [];
+
+  for (const key of allowed) {
+    if (Object.prototype.hasOwnProperty.call(req.body, key)) {
+      let col = key;
+      let val = req.body[key];
+      // map camelCase to DB column names where necessary
+      if (key === "firstName") col = "first_name";
+      if (key === "lastName") col = "last_name";
+      if (key === "hairColor") col = "hair_color";
+      if (key === "hairType") col = "hair_type";
+      if (key === "AI") col = "ai";
+      if (key === "wardrobe" || key === "colors") {
+        val = JSON.stringify(val || []);
+      }
+      updates.push(`${col} = ?`);
+      values.push(val);
+    }
+  }
+
+  if (updates.length === 0) return res.status(400).json({ message: "No updatable fields provided" });
+
+  values.push(id);
+
+  try {
+    await db.execute(`UPDATE users SET ${updates.join(", ")} WHERE id = ?`, values);
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("USER UPDATE ERR:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
 });
 
 export default router;
