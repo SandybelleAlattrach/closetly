@@ -1,24 +1,35 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
 
-function Login() {
-  const navigate = useNavigate();
+/**
+ * Use REACT_APP_API_URL (set at build time) or fall back to your Render URL.
+ * Example build:
+ * REACT_APP_API_URL=https://closetly-nstg.onrender.com npm run build
+ */
+const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_RENDER_URL || "https://closetly-nstg.onrender.com";
 
+export default function Login() {
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-localStorage.setItem("user", "true");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    if (!loginEmail || !loginPassword) {
+      alert("Email and password are required.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
 
-      const data = await res.json();
-      console.log("Login response:", data);
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         alert(data.message || "Login failed!");
@@ -28,11 +39,15 @@ localStorage.setItem("user", "true");
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
         alert("Login successful ✅");
-        navigate("/dashboard"); // بعد login
+        navigate("/dashboard"); // or change to "/"
+      } else {
+        alert("Login succeeded but no user returned.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Login error:", err);
       alert("Server error ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +60,7 @@ localStorage.setItem("user", "true");
           className="auth-input"
           type="email"
           placeholder="Email"
-          value={loginEmail}            
+          value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
         />
 
@@ -53,13 +68,12 @@ localStorage.setItem("user", "true");
           className="auth-input"
           type="password"
           placeholder="Password"
-          value={loginPassword}         
+          value={loginPassword}
           onChange={(e) => setLoginPassword(e.target.value)}
         />
-        
 
-        <button className="next-btn" onClick={handleLogin}>
-          Login →
+        <button className="next-btn" onClick={handleLogin} disabled={loading}>
+          {loading ? "Logging in..." : "Login →"}
         </button>
 
         <p
@@ -77,5 +91,3 @@ localStorage.setItem("user", "true");
     </div>
   );
 }
-
-export default Login;
